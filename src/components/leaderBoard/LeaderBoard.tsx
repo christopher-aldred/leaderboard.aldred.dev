@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Table } from "antd";
 import "./LeaderBoard.css";
 import { collection, onSnapshot } from "firebase/firestore";
-import db from "../../components/firebaseConfig";
+import db from "../firebaseConfig";
 
 type Users = {
   name: string;
