@@ -66,7 +66,7 @@ function formatData(users: Users, points: Points) {
       view: <Button style={{ width: "100%" }}>view</Button>,
     });
   });
-  return result.slice().sort((a, b) => a.score + b.score);
+  return result;
 }
 
 export default function LeaderBoard() {
@@ -76,6 +76,7 @@ export default function LeaderBoard() {
   useEffect(() => {
     const unsubscribe = onSnapshot(docRefUsers, (querySnapshot) => {
       const users = querySnapshot.docs.map((doc) => {
+        console.log("User store called");
         const data = doc.data();
         return {
           //return data compatible with data types specified in the user variable
@@ -88,11 +89,12 @@ export default function LeaderBoard() {
     return () => {
       unsubscribe();
     };
-  });
+  }, []);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(docRefPoints, (querySnapshot) => {
       const points = querySnapshot.docs.map((doc) => {
+        console.log("Point store called");
         const data = doc.data();
         return {
           //return data compatible with data types specified in the points variable
@@ -107,7 +109,7 @@ export default function LeaderBoard() {
     return () => {
       unsubscribe();
     };
-  });
+  }, []);
 
   return (
     <Table
