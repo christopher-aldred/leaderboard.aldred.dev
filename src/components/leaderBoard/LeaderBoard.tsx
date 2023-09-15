@@ -1,50 +1,121 @@
-import React from "react";
-import { Table } from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, Table } from "antd";
 import "./LeaderBoard.css";
+import { collection, onSnapshot } from "firebase/firestore";
+import db from "../../components/firebaseConfig";
 
-const dataSource = [
-  {
-    key: "1",
-    name: "Chris",
-    age: 26,
-    address: "Manchester",
-  },
-  {
-    key: "2",
-    name: "Matt",
-    age: 30,
-    address: "Sheffield",
-  },
-  {
-    key: "3",
-    name: "Daz",
-    age: 42,
-    address: "Sheffield",
-  },
-];
+type Users = {
+  name: string;
+  id: string;
+}[];
+
+type Points = {
+  date: Date;
+  description: string;
+  score: number;
+  user_id: string;
+}[];
+
+type TableEntries = {
+  key: string;
+  name: string;
+  score: number;
+  view: JSX.Element;
+}[];
 
 const columns = [
   {
     title: "Name",
     dataIndex: "name",
     key: "name",
+    width: "34%",
+
+    align: "center" as const,
   },
   {
-    title: "Age",
-    dataIndex: "age",
-    key: "age",
+    title: "Score",
+    dataIndex: "score",
+    key: "score",
+    width: "34%",
+    align: "center" as const,
   },
   {
-    title: "Address",
-    dataIndex: "address",
-    key: "address",
+    title: "",
+    dataIndex: "view",
+    key: "view",
+    width: "32%",
   },
 ];
 
-function LeaderBoard() {
-  return (
-    <Table className="LeaderBoard" dataSource={dataSource} columns={columns} />
-  );
+const docRefUsers = collection(db, `users`);
+const docRefPoints = collection(db, `points`);
+
+function formatData(users: Users, points: Points) {
+  let result: TableEntries = [];
+  users.forEach(function (user) {
+    let count = 0;
+    points.forEach(function (point) {
+      if (point.user_id === user.id) {
+        count += point.score;
+      }
+    });
+    result.push({
+      key: user.id,
+      name: user.name,
+      score: count,
+      view: <Button style={{ width: "100%" }}>view</Button>,
+    });
+  });
+  return result;
 }
 
-export default LeaderBoard;
+export default function LeaderBoard() {
+  const [users, setUsers] = useState<Users>([]);
+  const [points, setPoints] = useState<Points>([]);
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(docRefUsers, (querySnapshot) => {
+      const users = querySnapshot.docs.map((doc) => {
+        console.log("User store called");
+        const data = doc.data();
+        return {
+          //return data compatible with data types specified in the user variable
+          name: data.name,
+          id: doc.id,
+        };
+      });
+      setUsers(users);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(docRefPoints, (querySnapshot) => {
+      const points = querySnapshot.docs.map((doc) => {
+        console.log("Point store called");
+        const data = doc.data();
+        return {
+          //return data compatible with data types specified in the points variable
+          date: data.date,
+          description: data.description,
+          score: data.score,
+          user_id: data.user_id,
+        };
+      });
+      setPoints(points);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  return (
+    <Table
+      className="LeaderBoard"
+      dataSource={formatData(users, points)}
+      columns={columns}
+    />
+  );
+}
