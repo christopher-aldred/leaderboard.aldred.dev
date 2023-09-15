@@ -66,7 +66,7 @@ function formatData(users: Users, points: Points) {
       view: <Button style={{ width: "100%" }}>view</Button>,
     });
   });
-  return result;
+  return result.sort((a, b) => b.score - a.score); // b - a for reverse sort
 }
 
 export default function LeaderBoard() {
