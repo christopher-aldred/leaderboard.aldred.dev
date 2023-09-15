@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
-import "../LeaderBoard/LeaderBoard";
-import LeaderBoard from "../LeaderBoard/LeaderBoard";
+import "../leaderBoard/LeaderBoard";
+import LeaderBoard from "../leaderBoard/LeaderBoard";
 import db from "../firebaseConfig";
 import {
   Timestamp,
