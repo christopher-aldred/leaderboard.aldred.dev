@@ -1,4 +1,4 @@
-# Intro
+# D Train Intro
 
 1. npm i
 2. npm start
