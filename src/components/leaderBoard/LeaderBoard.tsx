@@ -17,6 +17,7 @@ type Points = {
 }[];
 
 type TableEntries = {
+  key: string;
   name: string;
   score: number;
   view: JSX.Element;
@@ -59,12 +60,13 @@ function formatData(users: Users, points: Points) {
       }
     });
     result.push({
+      key: user.id,
       name: user.name,
       score: count,
       view: <Button style={{ width: "100%" }}>view</Button>,
     });
   });
-  return result;
+  return result.slice().sort((a, b) => a.score + b.score);
 }
 
 export default function LeaderBoard() {
