@@ -1,3 +1,10 @@
+# Intro
+
+1. npm i
+2. npm start
+3. update pckage.json name
+4. npm update --save
+
 # CICD
 
 1. npm install -g firebase-tools
