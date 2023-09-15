@@ -3,12 +3,12 @@ jobs:
   build:
     working_directory: ~/project
     docker:
-      - image: cimg/node:18.16.0
+      - image: cimg/node:18.17.0
     steps:
       - checkout
-      #- run:
-      #    name: Update NPM
-      #    command: "sudo npm install -g npm"
+      - run:
+          name: Update NPM
+          command: "sudo npm install -g npm"
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
