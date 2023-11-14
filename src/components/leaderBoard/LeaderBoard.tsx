@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Table } from "antd";
 import "./LeaderBoard.css";
 import { collection, onSnapshot } from "firebase/firestore";
-import db from "../firebaseConfig";
+import db from "../../firebaseConfig";
 
 type Users = {
   name: string;
@@ -29,7 +29,6 @@ const columns = [
     dataIndex: "name",
     key: "name",
     width: "34%",
-
     align: "center" as const,
   },
   {
