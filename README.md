@@ -1,4 +1,4 @@
-# Leaderboard README
+# Leader Board
 
 1. npm i
 2. npm start
