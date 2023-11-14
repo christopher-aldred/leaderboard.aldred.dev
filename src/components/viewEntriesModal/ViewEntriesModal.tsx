@@ -1,7 +1,4 @@
 import { Modal, Table } from "antd";
-import "./ViewEntriesModal.css";
-// import { collection, onSnapshot } from "firebase/firestore";
-// import db from "../../firebaseConfig";
 
 const columns = [
   {
@@ -37,7 +34,7 @@ const columns = [
 
 export default function ViewEntriesModal(props: {
   shouldShow: boolean;
-  closeEntriesModal: () => void;
+  closeModal: () => void;
   userId: String;
 }) {
   return (
@@ -45,7 +42,7 @@ export default function ViewEntriesModal(props: {
       centered
       title="View entries"
       open={props.shouldShow}
-      onCancel={props.closeEntriesModal}
+      onCancel={props.closeModal}
       footer={[]}
     >
       <Table className="ViewEntries" dataSource={[]} columns={columns} />
