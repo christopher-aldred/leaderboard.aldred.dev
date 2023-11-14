@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import "../leaderBoard/LeaderBoard";
 import LeaderBoard from "../leaderBoard/LeaderBoard";
-import db from "../firebaseConfig";
+import ViewEntriesModal from "../viewEntriesModal/ViewEntriesModal";
+import db from "../../firebaseConfig";
 import {
   Timestamp,
   addDoc,
@@ -27,8 +28,9 @@ import { PlusOutlined } from "@ant-design/icons";
 import { DefaultOptionType } from "antd/es/select";
 
 function App() {
-  const { darkAlgorithm } = theme;
+  const { defaultAlgorithm } = theme;
   const [modal1Open, setModal1Open] = useState(false);
+  const [entriesModalOpen, setEntriesModalOpen] = useState(true);
   const [submitBtnLoading, setSubmitBtnLoading] = useState(false);
   const [users, setUsers] = useState<DefaultOptionType[]>([]);
 
@@ -88,11 +90,11 @@ function App() {
   };
 
   return (
-    <ConfigProvider theme={{ algorithm: darkAlgorithm }}>
+    <ConfigProvider theme={{ algorithm: defaultAlgorithm }}>
       {contextHolder}
       <div className="App">
         <header className="App-header">
-          <img src="derek.png" className="App-logo" alt="logo" />
+          <img src="trophy.png" className="App-logo" alt="logo" />
           <LeaderBoard />
         </header>
       </div>
@@ -163,6 +165,13 @@ function App() {
         <br />
         <br />
       </Modal>
+      <ViewEntriesModal
+        shouldShow={entriesModalOpen}
+        closeEntriesModal={() => {
+          setEntriesModalOpen(false);
+        }}
+        userId={"SY9fJr4ona8LfjoEJCJI"}
+      />
     </ConfigProvider>
   );
 }

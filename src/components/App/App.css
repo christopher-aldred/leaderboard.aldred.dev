@@ -6,8 +6,8 @@
   height: 30vmin;
   width: 30vmin;
   pointer-events: none;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -17,7 +17,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #f5f5f5;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
