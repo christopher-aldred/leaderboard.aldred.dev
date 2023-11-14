@@ -1,7 +1,7 @@
 import { Modal, Table } from "antd";
 import "./ViewEntriesModal.css";
-import { collection, onSnapshot } from "firebase/firestore";
-import db from "../../firebaseConfig";
+// import { collection, onSnapshot } from "firebase/firestore";
+// import db from "../../firebaseConfig";
 
 const columns = [
   {
