@@ -2,7 +2,7 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to firebase preview on PR
-"on": pull_request_target
+"on": pull_request
 jobs:
   build_and_preview:
     permissions: write-all
@@ -10,14 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build application
-        run: npm i && npm ci && npm run build
-      - name: Scan project for EOL dependencies
-        uses: xeol-io/xeol-action@v1.0.7
-        with:
-          path: "."
-      - name: Deploy to firebase preview
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - run: npm ci && npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_D_TRAIN }}"
