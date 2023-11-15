@@ -17,3 +17,9 @@ Designed to be hosted in Google Firebase simple steps to set up are below:
     7. Merge changes to the 'main' branch
 
 This will deploy the code in main branch to your firebase hosting. You can then access the app via your project url.
+
+# Tech stack
+
+    - Typescript
+    - React
+    - Firebase
