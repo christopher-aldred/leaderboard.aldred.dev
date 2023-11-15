@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Table } from "antd";
 import "./LeaderBoard.css";
 import { collection, onSnapshot } from "firebase/firestore";
@@ -115,6 +115,15 @@ export default function LeaderBoard(props: {
     <Table
       className="LeaderBoard"
       dataSource={formatData(users, points)}
+      rowClassName={(record, index) =>
+        index === 0
+          ? "gold"
+          : "none" && index === 1
+          ? "silver"
+          : "none" && index === 2
+          ? "bronze"
+          : "none"
+      }
       columns={columns}
     />
   );
