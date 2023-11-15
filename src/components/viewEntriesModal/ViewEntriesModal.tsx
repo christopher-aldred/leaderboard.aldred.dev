@@ -40,7 +40,7 @@ export default function ViewEntriesModal(props: {
   return (
     <Modal
       centered
-      title="View entries"
+      title={"View entries for: " + props.userId}
       open={props.shouldShow}
       onCancel={props.closeModal}
       footer={[]}
