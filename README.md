@@ -12,7 +12,7 @@ Designed to be hosted in Google Firebase simple steps to set up are below:
     2. CD to the local project root dir
     3. Create Firebase project
     4. Create web app in the project and enable hosting
-    5. Replace firebaseConfig with generated config
+    5. Replace firebaseConfig var in firebaseConfig.ts with generated config
     6. `npm install -g firebase-tools`
     7. `firebase login`
     8. `firebase init`
