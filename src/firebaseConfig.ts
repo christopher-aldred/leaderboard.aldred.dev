@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAjDW-6Z5TyzOLBpUg3jXcVU0cWm7veT1M",
-  authDomain: "d-train.firebaseapp.com",
-  projectId: "d-train",
-  storageBucket: "d-train.appspot.com",
-  messagingSenderId: "1045174940152",
-  appId: "1:1045174940152:web:656accd7a29587e132a60d",
+  apiKey: "AIzaSyA3-DWnpkiE-o5Yr23l0ZzF-JBf7ANzAPI",
+  authDomain: "leader-board-app.firebaseapp.com",
+  projectId: "leader-board-app",
+  storageBucket: "leader-board-app.appspot.com",
+  messagingSenderId: "875468914437",
+  appId: "1:875468914437:web:85e853410aa77226aa016c"
 };
 
 // Initialize Firebase
