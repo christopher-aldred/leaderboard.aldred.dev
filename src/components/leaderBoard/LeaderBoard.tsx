@@ -125,6 +125,7 @@ export default function LeaderBoard(props: {
           : "none"
       }
       columns={columns}
+      pagination={false}
     />
   );
 }
