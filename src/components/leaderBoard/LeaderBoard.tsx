@@ -3,18 +3,7 @@ import { Button, Table } from "antd";
 import "./LeaderBoard.css";
 import { collection, onSnapshot } from "firebase/firestore";
 import db from "../../firebaseConfig";
-
-type Users = {
-  name: string;
-  id: string;
-}[];
-
-type Points = {
-  date: Date;
-  description: string;
-  score: number;
-  user_id: string;
-}[];
+import { Users, Points } from "../../customTypes";
 
 type TableEntries = {
   key: string;
@@ -49,28 +38,39 @@ const columns = [
 const docRefUsers = collection(db, `users`);
 const docRefPoints = collection(db, `points`);
 
-function formatData(users: Users, points: Points) {
-  let result: TableEntries = [];
-  users.forEach(function (user) {
-    let count = 0;
-    points.forEach(function (point) {
-      if (point.user_id === user.id) {
-        count += point.score;
-      }
-    });
-    result.push({
-      key: user.id,
-      name: user.name,
-      score: count,
-      view: <Button style={{ width: "100%" }}>view</Button>,
-    });
-  });
-  return result.sort((a, b) => b.score - a.score); // b - a for reverse sort
-}
-
-export default function LeaderBoard() {
+export default function LeaderBoard(props: {
+  showUserEntries: (id: string) => void;
+}) {
   const [users, setUsers] = useState<Users>([]);
   const [points, setPoints] = useState<Points>([]);
+
+  function formatData(users: Users, points: Points) {
+    let result: TableEntries = [];
+    users.forEach(function (user) {
+      let count = 0;
+      points.forEach(function (point) {
+        if (point.user_id === user.id) {
+          count += point.score;
+        }
+      });
+      result.push({
+        key: user.id,
+        name: user.name,
+        score: count,
+        view: (
+          <Button
+            onClick={() => {
+              props.showUserEntries(user.id);
+            }}
+            style={{ width: "100%" }}
+          >
+            view
+          </Button>
+        ),
+      });
+    });
+    return result.sort((a, b) => b.score - a.score); // b - a for reverse sort
+  }
 
   useEffect(() => {
     const unsubscribe = onSnapshot(docRefUsers, (querySnapshot) => {
@@ -97,6 +97,7 @@ export default function LeaderBoard() {
         const data = doc.data();
         return {
           //return data compatible with data types specified in the points variable
+          id: data.id,
           date: data.date,
           description: data.description,
           score: data.score,

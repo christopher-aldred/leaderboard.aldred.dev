@@ -14,6 +14,8 @@ function App() {
   const [entriesModalOpen, setEntriesModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [messageApi, messageContextHolder] = message.useMessage();
+  const [visibleUserId, setvisibleUserId] = useState("");
+
 
   const displayError = (message: string) => {
     messageApi.open({
@@ -22,6 +24,11 @@ function App() {
     });
   };
 
+  const showUserEntries = (id: string) => {
+    setvisibleUserId(id)
+    setEntriesModalOpen(true)
+  }
+
   return (
     <ConfigProvider theme={{ algorithm: defaultAlgorithm }}>
       {messageContextHolder}
@@ -29,7 +36,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <img src="trophy.png" className="App-logo" alt="logo" />
-          <LeaderBoard />
+          <LeaderBoard showUserEntries={showUserEntries}/>
         </header>
       </div>
 
@@ -47,7 +54,7 @@ function App() {
         closeModal={() => {
           setEntriesModalOpen(false);
         }}
-        userId={"SY9fJr4ona8LfjoEJCJI"}
+        userId={visibleUserId}
       />
 
       <AddEntriesModal
