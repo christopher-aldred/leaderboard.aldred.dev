@@ -3,18 +3,7 @@ import { Button, Table } from "antd";
 import "./LeaderBoard.css";
 import { collection, onSnapshot } from "firebase/firestore";
 import db from "../../firebaseConfig";
-
-type Users = {
-  name: string;
-  id: string;
-}[];
-
-type Points = {
-  date: Date;
-  description: string;
-  score: number;
-  user_id: string;
-}[];
+import { Users, Points } from "../../customTypes";
 
 type TableEntries = {
   key: string;
@@ -68,7 +57,16 @@ export default function LeaderBoard(props: {
         key: user.id,
         name: user.name,
         score: count,
-        view: <Button onClick={()=>{props.showUserEntries(user.id)}} style={{ width: "100%" }}>view</Button>,
+        view: (
+          <Button
+            onClick={() => {
+              props.showUserEntries(user.id);
+            }}
+            style={{ width: "100%" }}
+          >
+            view
+          </Button>
+        ),
       });
     });
     return result.sort((a, b) => b.score - a.score); // b - a for reverse sort
@@ -99,6 +97,7 @@ export default function LeaderBoard(props: {
         const data = doc.data();
         return {
           //return data compatible with data types specified in the points variable
+          id: data.id,
           date: data.date,
           description: data.description,
           score: data.score,
