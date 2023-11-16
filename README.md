@@ -2,6 +2,8 @@
 
 ![App Screenshot](screenshot.png)
 
+[Demo site](https://leader-board-app.firebaseapp.com)
+
 Leader Board is a web based application which allows users to log and store entries in an interactive scoreboard.
 
 # Install and run
