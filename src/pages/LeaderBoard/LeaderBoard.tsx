@@ -1,15 +1,20 @@
 import { useState } from "react";
 import "./LeaderBoard.css";
-import "../../components/leaderBoard/ScoreBoard";
-import ScoreBoard from "../../components/leaderBoard/ScoreBoard";
-import ViewEntriesModal from "../../components/viewEntriesModal/ViewEntriesModal";
-import AddEntriesModal from "../../components/addEntryModal/AddEntriesModal";
+import "../../components/ScoreBoard/ScoreBoard";
+import ScoreBoard from "../../components/ScoreBoard/ScoreBoard";
+import ViewEntriesModal from "../../components/ViewEntriesModal/ViewEntriesModal";
+import AddEntriesModal from "../../components/AddEntryModal/AddEntriesModal";
 
 import { ConfigProvider, theme } from "antd";
 import { FloatButton, message } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import {
+  BarsOutlined,
+  PlusOutlined,
+  ShareAltOutlined,
+  TeamOutlined,
+} from "@ant-design/icons";
 
-function LeaderBoard() {
+export default function LeaderBoard() {
   const { defaultAlgorithm } = theme;
   const [entriesModalOpen, setEntriesModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
@@ -34,7 +39,6 @@ function LeaderBoard() {
 
       <div className="App">
         <header className="App-header">
-          <img src="trophy.png" className="App-logo" alt="logo" />
           <ScoreBoard showUserEntries={showUserEntries} />
         </header>
       </div>
@@ -47,6 +51,16 @@ function LeaderBoard() {
           setAddModalOpen(true);
         }}
       />
+
+      <FloatButton.Group
+        trigger="hover"
+        type="primary"
+        style={{ left: 50 }}
+        icon={<BarsOutlined />}
+      >
+        <FloatButton icon={<ShareAltOutlined />} />
+        <FloatButton icon={<TeamOutlined />} />
+      </FloatButton.Group>
 
       <ViewEntriesModal
         shouldShow={entriesModalOpen}
@@ -66,5 +80,3 @@ function LeaderBoard() {
     </ConfigProvider>
   );
 }
-
-export default LeaderBoard;
