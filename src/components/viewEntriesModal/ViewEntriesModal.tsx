@@ -99,8 +99,7 @@ export default function ViewEntriesModal(props: {
     setPoints([]);
     const queryUserPoints = query(
       collection(db, "points"),
-      where("user_id", "==", props.userId),
-      orderBy("date", "desc")
+      where("user_id", "==", props.userId)
     );
     const unsubscribe = onSnapshot(queryUserPoints, (querySnapshot) => {
       const points = querySnapshot.docs.map((doc) => {
@@ -114,10 +113,11 @@ export default function ViewEntriesModal(props: {
           user_id: data.user_id,
         };
       });
-      setPoints(points);
+      setPoints(points.sort((a, b) => b.date - a.date));
       console.log("Point store called");
       console.log("Entries: ", points.length);
     });
+
     return () => {
       unsubscribe();
     };
