@@ -1,27 +1,29 @@
-import { useState } from "react";
 import "./Home.css";
 import { Button, ConfigProvider, message, theme } from "antd";
 import { useNavigate } from "react-router";
+import createNewBoard from "../../utils/createNewBoard";
 
 export default function Home() {
   const { defaultAlgorithm } = theme;
   const [messageApi, messageContextHolder] = message.useMessage();
   let navigate = useNavigate();
 
+  /*
   const displayError = (message: string) => {
     messageApi.open({
       type: "error",
       content: message,
     });
   };
+  */
 
-  const newBoard = () => {
-    let path = `/view/1`;
+  const newBoard = async () => {
+    let path = `/view/` + (await createNewBoard());
     navigate(path);
   };
 
   const goToBoard = () => {
-    let path = `/view/1`;
+    let path = `/view/o8HmxaVNxcrgdJOXQI6U`;
     navigate(path);
   };
 

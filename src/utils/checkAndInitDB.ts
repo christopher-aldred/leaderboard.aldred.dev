@@ -1,7 +1,7 @@
 import { addDoc, collection, getCountFromServer } from "firebase/firestore";
 import db from "../firebaseConfig";
 
-async function checkAndInitDB() {
+export default async function checkAndInitDB() {
   const collUsers = collection(db, "users");
   const snapshot = await getCountFromServer(collUsers);
   if (snapshot.data().count < 1) {
@@ -17,5 +17,3 @@ async function checkAndInitDB() {
     console.log("Users initialised");
   }
 }
-
-export default checkAndInitDB;
