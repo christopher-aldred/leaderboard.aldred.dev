@@ -1,12 +1,8 @@
 import { Button, Modal, Table } from "antd";
 import {
   collection,
-  //doc,
-  //getDoc,
   getDocs,
   onSnapshot,
-  orderBy,
-  //onSnapshot,
   query,
   where,
 } from "firebase/firestore";
