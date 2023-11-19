@@ -3,9 +3,13 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./components/App/App";
 
+import checkAndInitDB from "./utils/checkAndInitDB";
+
+checkAndInitDB();
+
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
-)
+);
