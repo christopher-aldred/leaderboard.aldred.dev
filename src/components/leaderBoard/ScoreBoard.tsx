@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Table } from "antd";
-import "./LeaderBoard.css";
+import "./ScoreBoard.css";
 import { collection, onSnapshot } from "firebase/firestore";
 import db from "../../firebaseConfig";
 import { Users, Points } from "../../customTypes";
@@ -38,7 +38,7 @@ const columns = [
 const docRefUsers = collection(db, `users`);
 const docRefPoints = collection(db, `points`);
 
-export default function LeaderBoard(props: {
+export default function ScoreBoard(props: {
   showUserEntries: (id: string) => void;
 }) {
   const [users, setUsers] = useState<Users>([]);
