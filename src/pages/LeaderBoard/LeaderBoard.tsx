@@ -16,7 +16,7 @@ import {
   UsergroupAddOutlined,
   UsergroupDeleteOutlined,
 } from "@ant-design/icons";
-import { useFetcher, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function LeaderBoard() {
   const { defaultAlgorithm } = theme;
