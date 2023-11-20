@@ -33,6 +33,13 @@ export default function LeaderBoard() {
     });
   };
 
+  const displaySuccess = (message: string) => {
+    messageApi.open({
+      type: "success",
+      content: message,
+    });
+  };
+
   const showUserEntries = (id: string) => {
     setvisibleUserId(id);
     setEntriesModalOpen(true);
@@ -63,7 +70,13 @@ export default function LeaderBoard() {
         style={{ left: 50 }}
         icon={<BarsOutlined />}
       >
-        <FloatButton icon={<ShareAltOutlined />} />
+        <FloatButton
+          icon={<ShareAltOutlined />}
+          onClick={() => {
+            navigator.clipboard.writeText(window.location.href);
+            displaySuccess("Link copied to clipboard");
+          }}
+        />
         <FloatButton icon={<TeamOutlined />} />
       </FloatButton.Group>
 
