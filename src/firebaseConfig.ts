@@ -14,8 +14,6 @@ const app = initializeApp({
   appId: "1:875468914437:web:85e853410aa77226aa016c",
 });
 
-console.log(process.env.REACT_APP_SITE_KEY!);
-
 initializeAppCheck(app, {
   provider: new ReCaptchaEnterpriseProvider(process.env.REACT_APP_SITE_KEY!),
   isTokenAutoRefreshEnabled: false,
