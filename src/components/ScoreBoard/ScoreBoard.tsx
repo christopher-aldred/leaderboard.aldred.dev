@@ -41,8 +41,6 @@ export default function ScoreBoard(props: {
 }) {
   const [users, setUsers] = useState<Users>([]);
   const [points, setPoints] = useState<Points>([]);
-  const docRefUsers = collection(db, `boards/${props.boardID}/users`);
-  const docRefPoints = collection(db, `boards/${props.boardID}/points`);
 
   function formatData(users: Users, points: Points) {
     let result: TableEntries = [];
@@ -73,6 +71,7 @@ export default function ScoreBoard(props: {
   }
 
   useEffect(() => {
+    const docRefUsers = collection(db, `boards/${props.boardID}/users`);
     const unsubscribe = onSnapshot(docRefUsers, (querySnapshot) => {
       const users = querySnapshot.docs.map((doc) => {
         console.log("User store called");
@@ -88,9 +87,10 @@ export default function ScoreBoard(props: {
     return () => {
       unsubscribe();
     };
-  }, [docRefUsers]);
+  }, [props.boardID]);
 
   useEffect(() => {
+    const docRefPoints = collection(db, `boards/${props.boardID}/points`);
     const unsubscribe = onSnapshot(docRefPoints, (querySnapshot) => {
       const points = querySnapshot.docs.map((doc) => {
         console.log("Point store called");
@@ -109,7 +109,7 @@ export default function ScoreBoard(props: {
     return () => {
       unsubscribe();
     };
-  }, [docRefPoints]);
+  }, [props.boardID]);
 
   return (
     <Table
