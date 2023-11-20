@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./LeaderBoard.css";
 import "../../components/ScoreBoard/ScoreBoard";
 import ScoreBoard from "../../components/ScoreBoard/ScoreBoard";
@@ -16,7 +16,7 @@ import {
   UsergroupAddOutlined,
   UsergroupDeleteOutlined,
 } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
+import { useFetcher, useParams } from "react-router-dom";
 
 export default function LeaderBoard() {
   const { defaultAlgorithm } = theme;
@@ -49,6 +49,11 @@ export default function LeaderBoard() {
     setvisibleUserId(id);
     setEntriesModalOpen(true);
   };
+
+  useEffect(() => {
+    messageApi.info("Bookmark this page to return to this board");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   return (
     <ConfigProvider theme={{ algorithm: defaultAlgorithm }}>
@@ -86,7 +91,10 @@ export default function LeaderBoard() {
           icon={<UsergroupAddOutlined />}
           onClick={() => setAddUserModalOpen(true)}
         />
-        <FloatButton icon={<UsergroupDeleteOutlined />} onClick={() => setDeleteUserModalOpen(true)} />
+        <FloatButton
+          icon={<UsergroupDeleteOutlined />}
+          onClick={() => setDeleteUserModalOpen(true)}
+        />
       </FloatButton.Group>
 
       <ViewEntriesModal
