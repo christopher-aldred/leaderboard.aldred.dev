@@ -3,12 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import LeaderBoard from "./pages/LeaderBoard/LeaderBoard";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import checkAndInitDB from "./utils/checkAndInitDB";
 import Home from "./pages/Home/Home";
 import SpinningTrophy from "./components/SpinningTrophy/SpinningTrophy";
-
-checkAndInitDB();
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(

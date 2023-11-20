@@ -1,38 +1,49 @@
-import { Button, Input, InputNumber, Modal, Select } from "antd";
-import { DefaultOptionType } from "antd/es/select";
-import { useEffect, useState } from "react";
 import {
-  Timestamp,
-  addDoc,
   collection,
+  deleteDoc,
+  doc,
   getDocs,
   onSnapshot,
-  orderBy,
   query,
-} from "firebase/firestore";
+  where,
+} from "@firebase/firestore";
+import { Button, Select } from "antd";
+import Modal from "antd/es/modal/Modal";
+import { useEffect, useState } from "react";
 import db from "../../firebaseConfig";
+import { DefaultOptionType } from "antd/es/select";
 
-export default function AddEntriesModal(props: {
+export default function DeleteUserModal(props: {
   shouldShow: boolean;
   closeModal: () => void;
   displayError: (message: string) => void;
+  displaySuccess: (message: string) => void;
   boardID: string;
 }) {
   const [submitBtnLoading, setSubmitBtnLoading] = useState(false);
-  const [users, setUsers] = useState<DefaultOptionType[]>([]);
   const [inputUserId, setUserId] = useState("");
-  const [inputDesc, setDesc] = useState("");
-  const [inputScore, setScore] = useState(3);
+  const [users, setUsers] = useState<DefaultOptionType[]>([]);
+
+  const handleCancel = async () => {
+    props.closeModal();
+    setUserId("");
+  };
 
   const handleOk = async () => {
     setSubmitBtnLoading(true);
     let error: boolean = false;
-    if (inputUserId !== "" && inputDesc !== "") {
-      await addDoc(collection(db, `boards/${props.boardID}/points`), {
-        date: Timestamp.fromDate(new Date()),
-        description: inputDesc,
-        score: inputScore,
-        user_id: inputUserId,
+    if (inputUserId !== "") {
+      // Delete user
+      await deleteDoc(doc(db, `boards/${props.boardID}/users/`, inputUserId));
+
+      // Delete user points
+      const userPointsQuery = query(
+        collection(db, `boards/${props.boardID}/points/`),
+        where("user_id", "==", inputUserId)
+      );
+      const docSnap = await getDocs(userPointsQuery);
+      docSnap.forEach((doc) => {
+        deleteDoc(doc.ref);
       });
     } else {
       error = true;
@@ -41,22 +52,13 @@ export default function AddEntriesModal(props: {
     setTimeout(() => {
       setSubmitBtnLoading(false);
       props.closeModal();
-
       setUserId("");
-      setDesc("");
-      setScore(3);
-
       if (error === true) {
-        props.displayError("Must enter user, description and score");
+        props.displayError("Must select user to remove");
+      } else {
+        props.displaySuccess("User removed");
       }
     }, 1000);
-  };
-
-  const handleCancel = async () => {
-    props.closeModal();
-    setUserId("");
-    setDesc("");
-    setScore(3);
   };
 
   // Populate users
@@ -85,7 +87,7 @@ export default function AddEntriesModal(props: {
   return (
     <Modal
       centered
-      title="Input score"
+      title="Remove player"
       open={props.shouldShow}
       onCancel={handleCancel}
       footer={[
@@ -102,7 +104,6 @@ export default function AddEntriesModal(props: {
         </Button>,
       ]}
     >
-      <h4>User</h4>
       <Select
         style={{ width: "100%" }}
         value={inputUserId}
@@ -111,32 +112,6 @@ export default function AddEntriesModal(props: {
         }}
         options={users}
       />
-      <br />
-      <br />
-      <h4>Reason</h4>
-      <Input
-        style={{ width: "100%" }}
-        placeholder="Enter description"
-        value={inputDesc}
-        onChange={(value) => {
-          setDesc(value.target.value);
-        }}
-      />
-      <br />
-      <br />
-      <h4>Points</h4>
-      <InputNumber
-        style={{ width: "100%" }}
-        min={1}
-        max={10}
-        defaultValue={inputScore}
-        value={inputScore}
-        onChange={(value) => {
-          setScore(value!);
-        }}
-      />
-      <br />
-      <br />
     </Modal>
   );
 }

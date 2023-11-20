@@ -5,6 +5,7 @@ import ScoreBoard from "../../components/ScoreBoard/ScoreBoard";
 import ViewEntriesModal from "../../components/ViewEntriesModal/ViewEntriesModal";
 import AddEntriesModal from "../../components/AddEntryModal/AddEntriesModal";
 import AddUserModal from "../../components/AddUserModal/AddUserModal";
+import DeleteUserModal from "../../components/DeleteUserModal/DeleteUserModal";
 
 import { ConfigProvider, theme } from "antd";
 import { FloatButton, message } from "antd";
@@ -12,7 +13,8 @@ import {
   BarsOutlined,
   PlusOutlined,
   ShareAltOutlined,
-  TeamOutlined,
+  UsergroupAddOutlined,
+  UsergroupDeleteOutlined,
 } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 
@@ -21,6 +23,7 @@ export default function LeaderBoard() {
   const [entriesModalOpen, setEntriesModalOpen] = useState(false);
   const [addPointsModalOpen, setAddPointsModalOpen] = useState(false);
   const [addUserModalOpen, setAddUserModalOpen] = useState(false);
+  const [deleteUserModalOpen, setDeleteUserModalOpen] = useState(false);
   const [messageApi, messageContextHolder] = message.useMessage();
   const [visibleUserId, setvisibleUserId] = useState("");
 
@@ -80,9 +83,10 @@ export default function LeaderBoard() {
           }}
         />
         <FloatButton
-          icon={<TeamOutlined />}
+          icon={<UsergroupAddOutlined />}
           onClick={() => setAddUserModalOpen(true)}
         />
+        <FloatButton icon={<UsergroupDeleteOutlined />} onClick={() => setDeleteUserModalOpen(true)} />
       </FloatButton.Group>
 
       <ViewEntriesModal
@@ -107,6 +111,16 @@ export default function LeaderBoard() {
         shouldShow={addUserModalOpen}
         closeModal={() => {
           setAddUserModalOpen(false);
+        }}
+        displayError={displayError}
+        displaySuccess={displaySuccess}
+        boardID={id!}
+      />
+
+      <DeleteUserModal
+        shouldShow={deleteUserModalOpen}
+        closeModal={() => {
+          setDeleteUserModalOpen(false);
         }}
         displayError={displayError}
         displaySuccess={displaySuccess}

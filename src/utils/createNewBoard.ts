@@ -7,7 +7,7 @@ export default async function createNewBoard() {
   const usersCollection = collection(db, "boards", newBoardDoc.id, "users");
 
   const newUserDoc = await addDoc(usersCollection, {
-    name: "Jeff",
+    name: "Player one",
   });
 
   const pointsCollection = collection(db, "boards", newBoardDoc.id, "points");
