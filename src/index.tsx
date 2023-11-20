@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import LeaderBoard from "./pages/leaderBoard/LeaderBoard";
+import LeaderBoard from "./pages/LeaderBoard/LeaderBoard";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/home/Home";
+import Home from "./pages/Home/Home";
 import SpinningTrophy from "./components/spinningTrophy/SpinningTrophy";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
