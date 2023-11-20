@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./LeaderBoard.css";
-import "../../components/ScoreBoard/ScoreBoard";
-import ScoreBoard from "../../components/ScoreBoard/ScoreBoard";
-import ViewEntriesModal from "../../components/ViewEntriesModal/ViewEntriesModal";
-import AddEntriesModal from "../../components/AddEntryModal/AddEntriesModal";
-import AddUserModal from "../../components/AddUserModal/AddUserModal";
-import DeleteUserModal from "../../components/DeleteUserModal/DeleteUserModal";
+import "../../components/scoreBoard/ScoreBoard";
+import ScoreBoard from "../../components/scoreBoard/ScoreBoard";
+import ViewEntriesModal from "../../components/viewEntriesModal/ViewEntriesModal";
+import AddEntriesModal from "../../components/addEntryModal/AddEntriesModal";
+import AddUserModal from "../../components/addUserModal/AddUserModal";
+import DeleteUserModal from "../../components/deleteUserModal/DeleteUserModal";
 
 import { ConfigProvider, theme } from "antd";
 import { FloatButton, message } from "antd";
