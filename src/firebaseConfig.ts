@@ -1,19 +1,26 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import {
+  initializeAppCheck,
+  ReCaptchaEnterpriseProvider,
+} from "firebase/app-check";
 
-const firebaseConfig = {
+const app = initializeApp({
   apiKey: "AIzaSyA3-DWnpkiE-o5Yr23l0ZzF-JBf7ANzAPI",
   authDomain: "leader-board-app.firebaseapp.com",
   projectId: "leader-board-app",
   storageBucket: "leader-board-app.appspot.com",
   messagingSenderId: "875468914437",
-  appId: "1:875468914437:web:85e853410aa77226aa016c"
-};
+  appId: "1:875468914437:web:85e853410aa77226aa016c",
+});
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+initializeAppCheck(app, {
+  provider: new ReCaptchaEnterpriseProvider(
+    "6LcCgRYpAAAAAAp9NRARz4RrDKEflkP6RyrAOUfO"
+  ),
+  isTokenAutoRefreshEnabled: false, // Set to true to allow auto-refresh.
+});
 
-// Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
 export default db;
