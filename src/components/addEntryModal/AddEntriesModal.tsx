@@ -5,9 +5,7 @@ import {
   Timestamp,
   addDoc,
   collection,
-  getDocs,
   onSnapshot,
-  orderBy,
   query,
 } from "firebase/firestore";
 import db from "../../firebaseConfig";
@@ -127,7 +125,7 @@ export default function AddEntriesModal(props: {
       <h4>Points</h4>
       <InputNumber
         style={{ width: "100%" }}
-        min={1}
+        min={-10}
         max={10}
         defaultValue={inputScore}
         value={inputScore}
