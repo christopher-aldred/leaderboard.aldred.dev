@@ -8,7 +8,7 @@ import SpinningTrophy from "./components/SpinningTrophy/SpinningTrophy";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
-  <React.StrictMode>
+  <>
     <SpinningTrophy />
     <BrowserRouter>
       <Routes>
@@ -18,5 +18,5 @@ root.render(
         </Route>
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>
+  </>
 );

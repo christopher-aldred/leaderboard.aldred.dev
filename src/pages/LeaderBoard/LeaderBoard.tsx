@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./LeaderBoard.css";
 import "../../components/ScoreBoard/ScoreBoard";
 import ScoreBoard from "../../components/ScoreBoard/ScoreBoard";
@@ -50,6 +50,11 @@ export default function LeaderBoard() {
     setEntriesModalOpen(true);
   };
 
+  useEffect(() => {
+    messageApi.info("Bookmark this page to return to this board");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
   return (
     <ConfigProvider theme={{ algorithm: defaultAlgorithm }}>
       {messageContextHolder}
@@ -86,7 +91,10 @@ export default function LeaderBoard() {
           icon={<UsergroupAddOutlined />}
           onClick={() => setAddUserModalOpen(true)}
         />
-        <FloatButton icon={<UsergroupDeleteOutlined />} onClick={() => setDeleteUserModalOpen(true)} />
+        <FloatButton
+          icon={<UsergroupDeleteOutlined />}
+          onClick={() => setDeleteUserModalOpen(true)}
+        />
       </FloatButton.Group>
 
       <ViewEntriesModal
