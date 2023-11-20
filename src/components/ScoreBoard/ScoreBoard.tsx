@@ -88,7 +88,7 @@ export default function ScoreBoard(props: {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [docRefUsers]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(docRefPoints, (querySnapshot) => {
@@ -109,7 +109,7 @@ export default function ScoreBoard(props: {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [docRefPoints]);
 
   return (
     <Table

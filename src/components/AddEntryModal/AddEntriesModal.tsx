@@ -78,7 +78,7 @@ export default function AddEntriesModal(props: {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [props.boardID]);
 
   return (
     <Modal

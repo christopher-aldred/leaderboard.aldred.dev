@@ -82,7 +82,7 @@ export default function DeleteUserModal(props: {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [props.boardID]);
 
   return (
     <Modal

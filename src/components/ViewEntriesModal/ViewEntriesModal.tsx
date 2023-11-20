@@ -89,7 +89,7 @@ export default function ViewEntriesModal(props: {
       populateLocalVars();
     }
     console.log("User store called");
-  }, [props.userId]);
+  }, [props.userId, props.boardID]);
 
   // Populate points by for userId
   useEffect(() => {
@@ -118,7 +118,7 @@ export default function ViewEntriesModal(props: {
     return () => {
       unsubscribe();
     };
-  }, [props.userId]);
+  }, [props.userId, props.boardID]);
 
   return (
     <Modal
