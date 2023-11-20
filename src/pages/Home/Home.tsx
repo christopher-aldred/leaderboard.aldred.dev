@@ -2,7 +2,7 @@ import "./Home.css";
 import { Button, ConfigProvider, message, theme } from "antd";
 import { useNavigate } from "react-router";
 import createNewBoard from "../../utils/createNewBoard";
-import OpenBoardModal from "../../components/openBoardModal/OpenBoardModal";
+import OpenBoardModal from "../../components/OpenBoardModal/OpenBoardModal";
 import { useState } from "react";
 
 export default function Home() {
