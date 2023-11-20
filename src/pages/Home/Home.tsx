@@ -46,6 +46,7 @@ export default function Home() {
             A free web based application which allows users to log and store
             entries in an interactive scoreboard.
           </p>
+          {/* <ReCAPTCHA sitekey={process.env.REACT_APP_SITE_KEY!} /> */}
           <br />
           <Button
             style={{ width: "50%" }}

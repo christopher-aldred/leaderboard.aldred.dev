@@ -12,6 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Create env file
+        run: |
+          touch .env
+          echo REACT_APP_SITE_KEY=${{ secrets.REACT_APP_SITE_KEY }} >> .env
+          cat .env
       - name: Build application
         run: npm ci && npm run build
       - name: Deploy to firebase PROD
