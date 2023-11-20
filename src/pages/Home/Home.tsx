@@ -1,5 +1,5 @@
 import "./Home.css";
-import { Button, ConfigProvider, message, theme } from "antd";
+import { Button, ConfigProvider, Spin, message, theme } from "antd";
 import { useNavigate } from "react-router";
 import createNewBoard from "../../utils/createNewBoard";
 import OpenBoardModal from "../../components/OpenBoardModal/OpenBoardModal";
@@ -10,6 +10,11 @@ export default function Home() {
   let navigate = useNavigate();
   const [openBoardModal, setOpenBoardModal] = useState(false);
   const [messageApi, messageContextHolder] = message.useMessage();
+  const [loading, setLoading] = useState(false);
+
+  function timeout(delay: number) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
 
   const displayError = (message: string) => {
     messageApi.open({
@@ -19,17 +24,21 @@ export default function Home() {
   };
 
   const newBoard = async () => {
-    let path = `/view/` + (await createNewBoard());
+    setLoading(true);
+    const newBoardID = await createNewBoard();
+    await timeout(1000);
+    let path = `/view/` + newBoardID;
     navigate(path);
   };
 
   const goToBoard = () => {
-    setOpenBoardModal(true)
+    setOpenBoardModal(true);
   };
 
   return (
     <ConfigProvider theme={{ algorithm: defaultAlgorithm }}>
       {messageContextHolder}
+      <Spin spinning={loading} fullscreen size="large" />
       <div className="App">
         <header className="App-header">
           <h1>Leader Board</h1>
