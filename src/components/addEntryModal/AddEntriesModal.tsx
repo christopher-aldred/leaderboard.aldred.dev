@@ -23,6 +23,7 @@ export default function AddEntriesModal(props: {
   const [inputDesc, setDesc] = useState("");
   const [inputScore, setScore] = useState(3);
 
+  // TODO make this a subscribed event
   async function getUsers() {
     let result: DefaultOptionType[] = [];
     const q = query(

@@ -4,6 +4,7 @@ import "../../components/ScoreBoard/ScoreBoard";
 import ScoreBoard from "../../components/ScoreBoard/ScoreBoard";
 import ViewEntriesModal from "../../components/ViewEntriesModal/ViewEntriesModal";
 import AddEntriesModal from "../../components/AddEntryModal/AddEntriesModal";
+import AddUserModal from "../../components/AddUserModal/AddUserModal";
 
 import { ConfigProvider, theme } from "antd";
 import { FloatButton, message } from "antd";
@@ -18,7 +19,8 @@ import { useParams } from "react-router-dom";
 export default function LeaderBoard() {
   const { defaultAlgorithm } = theme;
   const [entriesModalOpen, setEntriesModalOpen] = useState(false);
-  const [addModalOpen, setAddModalOpen] = useState(false);
+  const [addPointsModalOpen, setAddPointsModalOpen] = useState(false);
+  const [addUserModalOpen, setAddUserModalOpen] = useState(false);
   const [messageApi, messageContextHolder] = message.useMessage();
   const [visibleUserId, setvisibleUserId] = useState("");
 
@@ -60,7 +62,7 @@ export default function LeaderBoard() {
         type="primary"
         style={{ right: 50 }}
         onClick={() => {
-          setAddModalOpen(true);
+          setAddPointsModalOpen(true);
         }}
       />
 
@@ -77,7 +79,10 @@ export default function LeaderBoard() {
             displaySuccess("Link copied to clipboard");
           }}
         />
-        <FloatButton icon={<TeamOutlined />} />
+        <FloatButton
+          icon={<TeamOutlined />}
+          onClick={() => setAddUserModalOpen(true)}
+        />
       </FloatButton.Group>
 
       <ViewEntriesModal
@@ -90,11 +95,21 @@ export default function LeaderBoard() {
       />
 
       <AddEntriesModal
-        shouldShow={addModalOpen}
+        shouldShow={addPointsModalOpen}
         closeModal={() => {
-          setAddModalOpen(false);
+          setAddPointsModalOpen(false);
         }}
         displayError={displayError}
+        boardID={id!}
+      />
+
+      <AddUserModal
+        shouldShow={addUserModalOpen}
+        closeModal={() => {
+          setAddUserModalOpen(false);
+        }}
+        displayError={displayError}
+        displaySuccess={displaySuccess}
         boardID={id!}
       />
     </ConfigProvider>
