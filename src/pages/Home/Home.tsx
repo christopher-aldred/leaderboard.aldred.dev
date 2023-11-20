@@ -8,14 +8,12 @@ export default function Home() {
   const [messageApi, messageContextHolder] = message.useMessage();
   let navigate = useNavigate();
 
-  /*
   const displayError = (message: string) => {
     messageApi.open({
       type: "error",
       content: message,
     });
   };
-  */
 
   const newBoard = async () => {
     let path = `/view/` + (await createNewBoard());

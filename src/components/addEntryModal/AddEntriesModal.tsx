@@ -15,6 +15,7 @@ export default function AddEntriesModal(props: {
   shouldShow: boolean;
   closeModal: () => void;
   displayError: (message: string) => void;
+  boardID: string;
 }) {
   const [submitBtnLoading, setSubmitBtnLoading] = useState(false);
   const [users, setUsers] = useState<DefaultOptionType[]>([]);
@@ -24,7 +25,10 @@ export default function AddEntriesModal(props: {
 
   async function getUsers() {
     let result: DefaultOptionType[] = [];
-    const q = query(collection(db, "users"), orderBy("name"));
+    const q = query(
+      collection(db, `boards/${props.boardID}/users`),
+      orderBy("name")
+    );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       result.push({ value: doc.id, label: doc.data().name });
@@ -36,7 +40,7 @@ export default function AddEntriesModal(props: {
     setSubmitBtnLoading(true);
     let error: boolean = false;
     if (inputUserId !== "" && inputDesc !== "") {
-      await addDoc(collection(db, "points"), {
+      await addDoc(collection(db, `boards/${props.boardID}/points`), {
         date: Timestamp.fromDate(new Date()),
         description: inputDesc,
         score: inputScore,
@@ -67,7 +71,7 @@ export default function AddEntriesModal(props: {
     setScore(3);
   };
 
-  // Only runs once and when 
+  // Only runs once and when
   useEffect(() => {
     getUsers();
   }, []);

@@ -52,6 +52,7 @@ export default function ViewEntriesModal(props: {
   shouldShow: boolean;
   closeModal: () => void;
   userId: string;
+  boardID: string;
 }) {
   const [userName, setUserName] = useState<string>("");
   const [points, setPoints] = useState<Points>([]);
@@ -79,7 +80,7 @@ export default function ViewEntriesModal(props: {
     if (props.userId !== "") {
       const populateLocalVars = async () => {
         const queryUserName = query(
-          collection(db, "users"),
+          collection(db, `boards/${props.boardID}/users`),
           where("__name__", "==", props.userId)
         );
         const userNameSnapshot = await getDocs(queryUserName);
@@ -94,7 +95,7 @@ export default function ViewEntriesModal(props: {
   useEffect(() => {
     setPoints([]);
     const queryUserPoints = query(
-      collection(db, "points"),
+      collection(db, `boards/${props.boardID}/points`),
       where("user_id", "==", props.userId)
     );
     const unsubscribe = onSnapshot(queryUserPoints, (querySnapshot) => {
