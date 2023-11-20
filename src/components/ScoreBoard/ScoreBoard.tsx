@@ -35,14 +35,14 @@ const columns = [
   },
 ];
 
-const docRefUsers = collection(db, `users`);
-const docRefPoints = collection(db, `points`);
-
 export default function ScoreBoard(props: {
   showUserEntries: (id: string) => void;
+  boardID: string;
 }) {
   const [users, setUsers] = useState<Users>([]);
   const [points, setPoints] = useState<Points>([]);
+  const docRefUsers = collection(db, `boards/${props.boardID}/users`);
+  const docRefPoints = collection(db, `boards/${props.boardID}/points`);
 
   function formatData(users: Users, points: Points) {
     let result: TableEntries = [];

@@ -3,19 +3,18 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import LeaderBoard from "./pages/LeaderBoard/LeaderBoard";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import checkAndInitDB from "./utils/checkAndInitDB";
-
-checkAndInitDB();
+import Home from "./pages/Home/Home";
+import SpinningTrophy from "./components/SpinningTrophy/SpinningTrophy";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <React.StrictMode>
+    <SpinningTrophy />
     <BrowserRouter>
       <Routes>
         <Route path="/">
-          <Route index element={<LeaderBoard />} />
-          <Route path="new" element={<h1>Coming soon...</h1>} />
+          <Route index element={<Home />} />
+          <Route path="view/:id" element={<LeaderBoard />} />
         </Route>
       </Routes>
     </BrowserRouter>
