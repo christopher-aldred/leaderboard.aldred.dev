@@ -6,19 +6,23 @@ jobs:
     if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checking out PR code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
           repository: ${{github.event.pull_request.head.repo.full_name}}
-      - name: Create env file
+
+      - name: Creating env file
         run: |
           touch .env
           echo REACT_APP_SITE_KEY=${{ secrets.REACT_APP_SITE_KEY }} >> .env
           cat .env
-      - name: Build application
+
+      - name: Building application
         run: npm ci && npm run build
-      - name: Deploy to firebase PREVIEW
+
+      - name: Deploying to firebase PREVIEW
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
