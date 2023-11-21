@@ -22,6 +22,11 @@ jobs:
       - name: Building application
         run: npm ci && npm run build
 
+      - name: Scanning dependencies for EOL
+        uses: xeol-io/xeol-action@v1.0.7
+        with:
+          path: "."
+
       - name: Deploying to firebase PREVIEW
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
