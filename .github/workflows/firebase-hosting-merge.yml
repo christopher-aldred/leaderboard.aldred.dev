@@ -8,15 +8,19 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Create env file
+      - name: Checking out code
+        uses: actions/checkout@v4
+
+      - name: Creating env file
         run: |
           touch .env
           echo REACT_APP_SITE_KEY=${{ secrets.REACT_APP_SITE_KEY }} >> .env
           cat .env
-      - name: Build application
+
+      - name: Building application
         run: npm ci && npm run build
-      - name: Deploy to firebase PROD
+
+      - name: Deploying to firebase PROD
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
