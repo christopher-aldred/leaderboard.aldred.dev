@@ -27,3 +27,17 @@ This will deploy the code in main branch to your firebase hosting. You can then 
     - Typescript
     - React
     - Firebase
+
+# CICD pipeline
+Using github actions we deploy to tywo environments PROD and TEST as below:
+
+## Pull requests
+    - Deploy code from the PR to a firebase preview
+    - Configures app to point towards TEST env
+    - Configures env file using github secrets
+    - Scans and checks for EOL dependencies
+
+## Merges to main
+    - Deploy code from main to the firebase PROD hosting
+    - Configures app to point towards PROD env
+    - Configures env file using github secrets
