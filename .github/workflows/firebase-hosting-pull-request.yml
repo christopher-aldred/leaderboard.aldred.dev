@@ -17,6 +17,7 @@ jobs:
         run: |
           touch .env
           echo REACT_APP_SITE_KEY=${{ secrets.REACT_APP_SITE_KEY }} >> .env
+          echo REACT_APP_FIREBASE_ENV=TEST >> .env
           cat .env
 
       - name: Building application
@@ -31,5 +32,5 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_LEADER_BOARD_APP }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_LEADER_BOARD_APP_TEST }}"
           projectId: leader-board-app
