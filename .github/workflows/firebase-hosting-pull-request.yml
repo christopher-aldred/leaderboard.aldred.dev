@@ -17,6 +17,7 @@ jobs:
         run: |
           touch .env
           echo REACT_APP_SITE_KEY=${{ secrets.REACT_APP_SITE_KEY }} >> .env
+          echo REACT_APP_DEBUG_KEY=${{ secrets.REACT_APP_DEBUG_KEY }} >> .env
           echo REACT_APP_FIREBASE_ENV=TEST >> .env
           cat .env
 
