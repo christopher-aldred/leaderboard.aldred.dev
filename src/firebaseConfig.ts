@@ -26,7 +26,11 @@ async function app() {
   }
 }
 
-if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+if (
+  !process.env.NODE_ENV ||
+  process.env.NODE_ENV === "development" ||
+  process.env.REACT_APP_FIREBASE_ENV !== "PROD"
+) {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   (<any>window).FIREBASE_APPCHECK_DEBUG_TOKEN = process.env.REACT_APP_DEBUG_KEY;
 }
