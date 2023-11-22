@@ -34,4 +34,4 @@ jobs:
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_LEADER_BOARD_APP_TEST }}"
-          projectId: leader-board-app
+          projectId: leader-board-app-test

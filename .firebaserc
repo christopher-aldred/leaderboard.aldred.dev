@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "leader-board-app-test",
+    "default": "leader-board-app",
     "staging": "leader-board-app-test"
   }
 }
