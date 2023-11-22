@@ -41,7 +41,7 @@ export default function Home() {
       <Spin spinning={loading} fullscreen size="large" />
       <div className="App">
         <header className="App-header">
-          <h1>Leader Board - TEST</h1>
+          <h1>Leader Board</h1>
           <p>
             A free web based application which allows users to log and store
             entries in an interactive scoreboard.
