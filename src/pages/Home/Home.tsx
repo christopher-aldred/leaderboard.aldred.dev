@@ -3,12 +3,14 @@ import { Button, ConfigProvider, Spin, message, theme } from "antd";
 import { useNavigate } from "react-router";
 import createNewBoard from "../../utils/createNewBoard";
 import OpenBoardModal from "../../components/OpenBoardModal/OpenBoardModal";
+import AddBoardModal from "../../components/AddBoardModal/AddBoardModal";
 import { useState } from "react";
 
 export default function Home() {
   const { defaultAlgorithm } = theme;
   let navigate = useNavigate();
   const [openBoardModal, setOpenBoardModal] = useState(false);
+  const [addBoardModal, setAddBoardModal] = useState(false);
   const [messageApi, messageContextHolder] = message.useMessage();
   const [loading, setLoading] = useState(false);
 
@@ -23,9 +25,9 @@ export default function Home() {
     });
   };
 
-  const newBoard = async () => {
+  const newBoard = async (title: string) => {
     setLoading(true);
-    const newBoardID = await createNewBoard();
+    const newBoardID = await createNewBoard(title);
     await timeout(1000);
     let path = `/view/` + newBoardID;
     navigate(path);
@@ -52,7 +54,7 @@ export default function Home() {
             style={{ width: "50%" }}
             type="dashed"
             block
-            onClick={newBoard}
+            onClick={() => setAddBoardModal(true)}
           >
             Create new leader board
           </Button>
@@ -63,7 +65,7 @@ export default function Home() {
             block
             onClick={goToBoard}
           >
-            Go to existing leader board
+            Go to leader board
           </Button>
         </header>
       </div>
@@ -73,6 +75,14 @@ export default function Home() {
           setOpenBoardModal(false);
         }}
         displayError={displayError}
+      />
+      <AddBoardModal
+        shouldShow={addBoardModal}
+        closeModal={() => {
+          setAddBoardModal(false);
+        }}
+        displayError={displayError}
+        addBoard={newBoard}
       />
     </ConfigProvider>
   );

@@ -74,7 +74,6 @@ export default function ScoreBoard(props: {
     const docRefUsers = collection(db, `boards/${props.boardID}/users`);
     const unsubscribe = onSnapshot(docRefUsers, (querySnapshot) => {
       const users = querySnapshot.docs.map((doc) => {
-        console.log("User store called");
         const data = doc.data();
         return {
           //return data compatible with data types specified in the user variable
@@ -93,7 +92,6 @@ export default function ScoreBoard(props: {
     const docRefPoints = collection(db, `boards/${props.boardID}/points`);
     const unsubscribe = onSnapshot(docRefPoints, (querySnapshot) => {
       const points = querySnapshot.docs.map((doc) => {
-        console.log("Point store called");
         const data = doc.data();
         return {
           //return data compatible with data types specified in the points variable

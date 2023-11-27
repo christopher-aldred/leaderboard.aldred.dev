@@ -88,7 +88,6 @@ export default function ViewEntriesModal(props: {
       };
       populateLocalVars();
     }
-    console.log("User store called");
   }, [props.userId, props.boardID]);
 
   // Populate points by for userId
@@ -111,8 +110,6 @@ export default function ViewEntriesModal(props: {
         };
       });
       setPoints(points.sort((a, b) => b.date - a.date));
-      console.log("Point store called");
-      console.log("Entries: ", points.length);
     });
 
     return () => {
