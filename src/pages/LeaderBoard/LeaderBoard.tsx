@@ -6,6 +6,8 @@ import ViewEntriesModal from "../../components/ViewEntriesModal/ViewEntriesModal
 import AddEntriesModal from "../../components/AddEntryModal/AddEntriesModal";
 import AddUserModal from "../../components/AddUserModal/AddUserModal";
 import DeleteUserModal from "../../components/DeleteUserModal/DeleteUserModal";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import db from "../../firebaseConfig";
 
 import { ConfigProvider, theme } from "antd";
 import { FloatButton, message } from "antd";
@@ -26,10 +28,9 @@ export default function LeaderBoard() {
   const [deleteUserModalOpen, setDeleteUserModalOpen] = useState(false);
   const [messageApi, messageContextHolder] = message.useMessage();
   const [visibleUserId, setvisibleUserId] = useState("");
+  const [boardTitle, setBoardTitle] = useState(undefined);
 
   let { id } = useParams();
-
-  console.log("ID: ", id);
 
   const displayError = (message: string) => {
     messageApi.open({
@@ -52,6 +53,16 @@ export default function LeaderBoard() {
 
   useEffect(() => {
     messageApi.info("Bookmark this page to return to this board");
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const fetchData = async () => {
+      const titleQuery = query(
+        collection(db, "boards"),
+        where("__name__", "==", id!)
+      );
+      const titleSnapshot = await getDocs(titleQuery);
+      setBoardTitle(titleSnapshot.docs[0].get("title"));
+    };
+    fetchData().catch(console.error);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
@@ -61,6 +72,7 @@ export default function LeaderBoard() {
 
       <div className="App">
         <header className="App-header">
+          {typeof boardTitle !== "undefined" && <h2>{boardTitle}</h2>}
           <ScoreBoard showUserEntries={showUserEntries} boardID={id!} />
         </header>
       </div>
