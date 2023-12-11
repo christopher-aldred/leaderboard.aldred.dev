@@ -4,6 +4,7 @@ import "./ScoreBoard.css";
 import { collection, onSnapshot } from "firebase/firestore";
 import db from "../../firebaseConfig";
 import { Users, Points } from "../../customTypes";
+import React from "react";
 
 type TableEntries = {
   key: string;

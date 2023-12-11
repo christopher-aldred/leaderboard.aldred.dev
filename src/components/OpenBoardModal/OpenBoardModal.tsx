@@ -4,6 +4,7 @@ import Modal from "antd/es/modal/Modal";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import db from "../../firebaseConfig";
+import React from "react";
 
 export default function OpenBoardModal(props: {
   shouldShow: boolean;
