@@ -12,6 +12,7 @@ import Modal from "antd/es/modal/Modal";
 import { useEffect, useState } from "react";
 import db from "../../firebaseConfig";
 import { DefaultOptionType } from "antd/es/select";
+import React from "react";
 
 export default function DeleteUserModal(props: {
   shouldShow: boolean;
