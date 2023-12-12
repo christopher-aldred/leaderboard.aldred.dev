@@ -9,6 +9,7 @@ import {
 import db from "../../firebaseConfig";
 import { useEffect, useState } from "react";
 import { Points } from "../../customTypes";
+import React from "react";
 
 const columns = [
   {

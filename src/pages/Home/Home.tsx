@@ -5,6 +5,7 @@ import createNewBoard from "../../utils/createNewBoard";
 import OpenBoardModal from "../../components/OpenBoardModal/OpenBoardModal";
 import AddBoardModal from "../../components/AddBoardModal/AddBoardModal";
 import { useState } from "react";
+import React from "react";
 
 export default function Home() {
   const { defaultAlgorithm } = theme;

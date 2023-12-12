@@ -1,4 +1,4 @@
-name: Deploy to PREVIEW on pull request
+name: Deploy to PREVIEW
 "on": pull_request_target
 jobs:
   build_and_preview:
