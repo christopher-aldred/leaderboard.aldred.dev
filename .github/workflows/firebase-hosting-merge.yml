@@ -1,4 +1,4 @@
-name: Deploy to firebase PROD
+name: Deploy to PROD
 "on":
   push:
     branches:

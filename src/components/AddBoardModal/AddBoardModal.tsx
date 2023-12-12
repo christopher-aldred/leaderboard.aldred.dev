@@ -1,6 +1,7 @@
 import { Button, Input } from "antd";
 import Modal from "antd/es/modal/Modal";
 import { useState } from "react";
+import React from "react";
 
 export default function AddBoardModal(props: {
   shouldShow: boolean;

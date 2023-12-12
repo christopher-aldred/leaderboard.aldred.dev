@@ -9,6 +9,7 @@ import {
   query,
 } from "firebase/firestore";
 import db from "../../firebaseConfig";
+import React from "react";
 
 export default function AddEntriesModal(props: {
   shouldShow: boolean;

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.12.1",
@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^29.5.11",
     "@types/react-google-recaptcha": "^2.1.8",
     "cypress": "^13.6.1",
     "eslint-plugin-cypress": "^2.15.1",

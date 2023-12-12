@@ -3,6 +3,7 @@ import { Button, Input } from "antd";
 import Modal from "antd/es/modal/Modal";
 import { useState } from "react";
 import db from "../../firebaseConfig";
+import React from "react";
 
 export default function AddUserModal(props: {
   shouldShow: boolean;
