@@ -13,11 +13,6 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           repository: ${{github.event.pull_request.head.repo.full_name}}
 
-      - name: Running Cypress E2E tests
-        uses: cypress-io/github-action@v6
-        with:
-          start: npm start
-
       - name: Creating env file
         run: |
           touch .env
@@ -25,6 +20,11 @@ jobs:
           echo REACT_APP_DEBUG_KEY=${{ secrets.REACT_APP_DEBUG_KEY }} >> .env
           echo REACT_APP_FIREBASE_ENV=TEST >> .env
           cat .env
+
+      - name: Running Cypress E2E tests
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
 
       - name: Building application
         run: npm ci && npm run build
