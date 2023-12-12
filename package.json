@@ -7,6 +7,7 @@
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.12.1",
+    "cypress-xpath": "^2.0.1",
     "eslint": "^8.55.0",
     "firebase": "^10.7.1",
     "n": "^9.1.0",
@@ -28,12 +29,14 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "cypress:open": "npx cypress open"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:cypress/recommended"
     ]
   },
   "browserslist": {
@@ -51,6 +54,8 @@
   "devDependencies": {
     "@types/jest": "^29.5.11",
     "@types/react-google-recaptcha": "^2.1.8",
+    "cypress": "^13.6.1",
+    "eslint-plugin-cypress": "^2.15.1",
     "react-router-dom": "^6.20.1"
   }
 }
