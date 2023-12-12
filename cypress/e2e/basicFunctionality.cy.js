@@ -47,10 +47,12 @@ describe("Test LeaderBoard app", () => {
       "/html/body/div[3]/div/div[2]/div/div[2]/div[3]/button[2]"
     ).click();
 
+    // Click view button
     cy.xpath(
       '//*[@id="root"]/div[2]/header/div/div/div/div/div/div/table/tbody/tr/td[3]/button'
     ).click();
 
+    // Assert the data has been added
     cy.get("tr").should("contain", input);
   });
 });

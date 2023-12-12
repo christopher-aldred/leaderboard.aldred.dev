@@ -13,6 +13,11 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           repository: ${{github.event.pull_request.head.repo.full_name}}
 
+      - name: Running Cypress E2E tests
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
+
       - name: Creating env file
         run: |
           touch .env
