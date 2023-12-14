@@ -35,6 +35,7 @@ jobs:
           path: "."
 
       - name: Deploying to firebase PREVIEW
+        if: github.actor != 'dependabot[bot]'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
