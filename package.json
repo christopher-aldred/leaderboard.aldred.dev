@@ -6,7 +6,7 @@
     "@testing-library/jest-dom": "^6.1.6",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "antd": "^5.12.5",
+    "antd": "^5.12.6",
     "cypress-xpath": "^2.0.1",
     "eslint": "^8.56.0",
     "firebase": "^10.7.1",
