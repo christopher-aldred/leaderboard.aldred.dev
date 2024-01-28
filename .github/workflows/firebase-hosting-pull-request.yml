@@ -33,7 +33,7 @@ jobs:
         run: npm run build --if-present
 
       - name: Scanning dependencies for EOL
-        uses: xeol-io/xeol-action@v1.0.7
+        uses: xeol-io/xeol-action@v1.0.9
         with:
           path: "."
 
