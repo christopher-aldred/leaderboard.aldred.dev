@@ -21,11 +21,8 @@ jobs:
           echo REACT_APP_FIREBASE_ENV=TEST >> .env
           cat .env
 
-      - name: Install 
-        run: npm ci
-        
-      - name: Build
-        run: npm run build --if-present
+      - name: Building application
+        run: npm ci && npm run build
 
       - name: Running Cypress E2E tests
         uses: cypress-io/github-action@v6
