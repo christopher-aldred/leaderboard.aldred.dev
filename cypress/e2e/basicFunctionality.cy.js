@@ -15,11 +15,13 @@ describe("Test LeaderBoard app", () => {
     const id = "6Ulc3SrCnSaxbtz9gcGL";
 
     // Type in ID
-    cy.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div[2]/input").type(id);
+    cy.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div/div[2]/input").type(
+      id,
+    );
 
     // Click submit
     cy.xpath(
-      "/html/body/div[3]/div/div[2]/div/div[2]/div[3]/button[2]"
+      "/html/body/div[3]/div/div[2]/div/div[2]/div/div[3]/button[2]",
     ).click();
 
     // Should be redirected
@@ -33,23 +35,25 @@ describe("Test LeaderBoard app", () => {
     cy.xpath("/html/body/div[1]/button").click();
 
     // Click user field
-    cy.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div[2]/div[1]").click();
-    cy.xpath("/html/body/div[4]/div/div/div[2]/div/div/div/div").click();
+    cy.xpath(
+      "/html/body/div[3]/div/div[2]/div/div[2]/div/div[2]/div[1]/div",
+    ).click();
+    cy.xpath("/html/body/div[4]/div/div/div[2]/div/div/div/div/div").click();
 
     // Enter a reason
     const input = "TEST ENTRY: " + Cypress._.random(0, 1e6);
-    cy.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div[2]/input").type(
-      input
+    cy.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div/div[2]/input").type(
+      input,
     );
 
     // Click submit
     cy.xpath(
-      "/html/body/div[3]/div/div[2]/div/div[2]/div[3]/button[2]"
+      "/html/body/div[3]/div/div[2]/div/div[2]/div/div[3]/button[2]",
     ).click();
 
     // Click view button
     cy.xpath(
-      '//*[@id="root"]/div[2]/header/div/div/div/div/div/div/table/tbody/tr/td[3]/button'
+      '//*[@id="root"]/div[2]/header/div/div/div/div/div/div/table/tbody/tr/td[3]/button',
     ).click();
 
     // Assert the data has been added
