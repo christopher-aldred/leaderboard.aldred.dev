@@ -30,7 +30,7 @@ jobs:
           start: npm start
 
       - name: Scanning dependencies for EOL
-        uses: xeol-io/xeol-action@v1.0.9
+        uses: xeol-io/xeol-action@v1.1.0
         with:
           path: "."
 
