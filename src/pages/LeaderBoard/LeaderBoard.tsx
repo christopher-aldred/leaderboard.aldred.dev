@@ -90,7 +90,7 @@ export default function LeaderBoard() {
       <FloatButton.Group
         trigger="hover"
         type="primary"
-        style={{ left: 50 }}
+        style={{ right: 50, bottom: 100 }}
         icon={<BarsOutlined />}
       >
         <FloatButton
