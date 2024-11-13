@@ -21,16 +21,16 @@ jobs:
           echo REACT_APP_FIREBASE_ENV=TEST >> .env
           cat .env
 
+      - name: Building application
+        run: npm ci && npm run build
+
       - name: Running Cypress E2E tests
         uses: cypress-io/github-action@v6
         with:
           start: npm start
 
-      - name: Building application
-        run: npm ci && npm run build
-
       - name: Scanning dependencies for EOL
-        uses: xeol-io/xeol-action@v1.0.7
+        uses: xeol-io/xeol-action@v1.1.0
         with:
           path: "."
 
