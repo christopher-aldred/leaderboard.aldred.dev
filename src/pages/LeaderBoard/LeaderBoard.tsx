@@ -79,6 +79,7 @@ export default function LeaderBoard() {
       </div>
 
       <FloatButton
+        data-test-id="board-add-button"
         icon={<PlusOutlined />}
         type="primary"
         style={{ right: 50 }}

@@ -1,5 +1,4 @@
 /// <reference types="cypress" />
-import "cypress-xpath";
 
 describe("Test LeaderBoard app", () => {
   it("Displays two buttons", () => {
@@ -10,19 +9,15 @@ describe("Test LeaderBoard app", () => {
 
   it("Navigates to an existing board", () => {
     cy.visit("http://localhost:3000");
-    cy.xpath('//*[@id="root"]/div[3]/header/button[2]').click();
+    cy.get('[data-test-id="go-to-board-button"]').click();
 
     const id = "6Ulc3SrCnSaxbtz9gcGL";
 
     // Type in ID
-    cy.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div/div[2]/input").type(
-      id,
-    );
+    cy.get('[data-test-id="board-id-input"]').type(id);
 
     // Click submit
-    cy.xpath(
-      "/html/body/div[3]/div/div[2]/div/div[2]/div/div[3]/button[2]",
-    ).click();
+    cy.get('[data-test-id="board-id-submit"]').click();
 
     // Should be redirected
     cy.location("pathname").should("eq", "/view/" + id);
@@ -32,29 +27,22 @@ describe("Test LeaderBoard app", () => {
     cy.visit("http://localhost:3000/view/6Ulc3SrCnSaxbtz9gcGL");
 
     // Click add button
-    cy.xpath("/html/body/div[1]/button").click();
+    cy.get('[data-test-id="board-add-button"]').click();
 
-    // Click user field
-    cy.xpath(
-      "/html/body/div[3]/div/div[2]/div/div[2]/div/div[2]/div[1]/div",
-    ).click();
-    cy.xpath("/html/body/div[4]/div/div/div[2]/div/div/div/div/div").click();
+    // // Click user field
+    // cy.get('[data-test-id="select-user-field"]').click();
 
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.get('[data-test-id="select-user-field"]').wait(1000).type("{enter}");
     // Enter a reason
     const input = "TEST ENTRY: " + Cypress._.random(0, 1e6);
-    cy.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div/div[2]/input").type(
-      input,
-    );
+    cy.get('[data-test-id="input-reason"]').type(input);
 
     // Click submit
-    cy.xpath(
-      "/html/body/div[3]/div/div[2]/div/div[2]/div/div[3]/button[2]",
-    ).click();
+    cy.get('[data-test-id="submit-entry-button"]').click();
 
     // Click view button
-    cy.xpath(
-      '//*[@id="root"]/div[2]/header/div/div/div/div/div/div/table/tbody/tr/td[3]/button',
-    ).click();
+    cy.get('[data-test-id="view-entry-button"]').click();
 
     // Assert the data has been added
     cy.get("tr").should("contain", input);
