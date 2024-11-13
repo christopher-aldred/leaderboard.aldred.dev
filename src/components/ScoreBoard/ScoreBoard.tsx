@@ -58,6 +58,7 @@ export default function ScoreBoard(props: {
         score: count,
         view: (
           <Button
+            data-test-id="view-entry-button"
             onClick={() => {
               props.showUserEntries(user.id);
             }}

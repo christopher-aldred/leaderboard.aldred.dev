@@ -61,6 +61,7 @@ export default function Home() {
           </Button>
           <p>or</p>
           <Button
+            data-test-id="go-to-board-button"
             style={{ width: "50%" }}
             type="dashed"
             block

@@ -57,6 +57,7 @@ export default function OpenBoardModal(props: {
           Cancel
         </Button>,
         <Button
+          data-test-id="board-id-submit"
           key="submit"
           type="primary"
           loading={submitBtnLoading}
@@ -68,6 +69,7 @@ export default function OpenBoardModal(props: {
     >
       <Input
         style={{ width: "100%" }}
+        data-test-id="board-id-input"
         placeholder="Enter board ID"
         value={inputID}
         onChange={(value) => {

@@ -92,6 +92,7 @@ export default function AddEntriesModal(props: {
           Cancel
         </Button>,
         <Button
+          data-test-id="submit-entry-button"
           key="submit"
           type="primary"
           loading={submitBtnLoading}
@@ -103,6 +104,7 @@ export default function AddEntriesModal(props: {
     >
       <h4>User</h4>
       <Select
+        data-test-id="select-user-field"
         style={{ width: "100%" }}
         value={inputUserId}
         onChange={(value) => {
@@ -114,6 +116,7 @@ export default function AddEntriesModal(props: {
       <br />
       <h4>Reason</h4>
       <Input
+        data-test-id="input-reason"
         style={{ width: "100%" }}
         placeholder="Enter description"
         value={inputDesc}
