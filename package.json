@@ -9,7 +9,7 @@
     "antd": "^5.22.1",
     "cypress-xpath": "^2.0.1",
     "eslint": "^8.57.1",
-    "firebase": "^11.0.1",
+    "firebase": "^11.0.2",
     "n": "^10.1.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.1",
