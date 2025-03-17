@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Flex, Spin, Table } from "antd";
+import { Button, Spin, Table } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import "./ScoreBoard.css";
 import { collection, onSnapshot } from "firebase/firestore";
