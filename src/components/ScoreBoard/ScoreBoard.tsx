@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Button, Spin, Table } from "antd";
+import { Button, Flex, Spin, Table } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import "./ScoreBoard.css";
 import { collection, onSnapshot } from "firebase/firestore";
 import db from "../../firebaseConfig";
@@ -114,7 +115,10 @@ export default function ScoreBoard(props: {
   }, [props.boardID]);
 
   return loading ? (
-    <Spin spinning={loading} size="large" />
+    <Spin
+      indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />}
+      size="large"
+    />
   ) : (
     <Table
       className="LeaderBoard"
