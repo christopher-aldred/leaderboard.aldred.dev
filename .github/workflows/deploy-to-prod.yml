@@ -19,7 +19,7 @@ jobs:
           cat .env
 
       - name: Building application
-        run: npm ci && npm run build
+        run: npm ci --legacy-peer-deps && npm run build
 
       - name: Deploying to firebase PROD
         uses: FirebaseExtended/action-hosting-deploy@v0
