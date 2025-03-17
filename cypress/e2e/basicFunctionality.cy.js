@@ -42,7 +42,8 @@ describe("Test LeaderBoard app", () => {
     cy.get('[data-test-id="submit-entry-button"]').click();
 
     // Click view button
-    cy.get('[data-test-id="view-entry-button"]').click();
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.get('[data-test-id="view-entry-button"]').wait(2000).click();
 
     // Assert the data has been added
     cy.get("tr").should("contain", input);
