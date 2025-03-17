@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Table } from "antd";
+import { Button, Spin, Table } from "antd";
 import "./ScoreBoard.css";
 import { collection, onSnapshot } from "firebase/firestore";
 import db from "../../firebaseConfig";
@@ -42,6 +42,7 @@ export default function ScoreBoard(props: {
 }) {
   const [users, setUsers] = useState<Users>([]);
   const [points, setPoints] = useState<Points>([]);
+  const [loading, setLoading] = useState(true);
 
   function formatData(users: Users, points: Points) {
     let result: TableEntries = [];
@@ -84,6 +85,7 @@ export default function ScoreBoard(props: {
         };
       });
       setUsers(users);
+      setLoading(false);
     });
     return () => {
       unsubscribe();
@@ -111,16 +113,18 @@ export default function ScoreBoard(props: {
     };
   }, [props.boardID]);
 
-  return (
+  return loading ? (
+    <Spin spinning={loading} size="large" />
+  ) : (
     <Table
       className="LeaderBoard"
       dataSource={formatData(users, points)}
       rowClassName={(record, index) =>
         index === 0
           ? "gold"
-          : "none" && index === 1
+          : index === 1
           ? "silver"
-          : "none" && index === 2
+          : index === 2
           ? "bronze"
           : "none"
       }
