@@ -56,6 +56,6 @@
     "@types/react-google-recaptcha": "^2.1.9",
     "cypress": "^14.2.0",
     "eslint-plugin-cypress": "^3.6.0",
-    "react-router-dom": "^7.3.0"
+    "react-router-dom": "^7.4.0"
   }
 }
