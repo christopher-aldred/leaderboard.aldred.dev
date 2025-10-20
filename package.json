@@ -54,7 +54,7 @@
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/react-google-recaptcha": "^2.1.9",
-    "cypress": "^15.4.0",
+    "cypress": "^15.5.0",
     "eslint-plugin-cypress": "^3.6.0",
     "react-router-dom": "^7.9.4"
   }
